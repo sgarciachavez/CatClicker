@@ -23,31 +23,32 @@ class Cat{
 }
 
 
-let tabcontainer = document.getElementById("tab-container");
-let container = document.getElementById("cat-container");
+let tabcontainer = document.getElementById("tab-container"); //contains the tab/button cat names
+let container = document.getElementById("cat-container"); //contains the cat info / pictures
 
+//Build the html tags per the cat name array size
 for(let i = 0; i < catnames.length; i++){
   let button = document.createElement("button");
   button.id = i.toString();
   button.appendChild(document.createTextNode(catnames[i]));
   tabcontainer.appendChild(button);
 
-  let div = document.createElement("div");
+  let div = document.createElement("div"); //cat info container
   div.id=`catinfo${i}`;
   div.classList.add("tabcontent", "hide");  //need to add hide here!
 
-  let nameholder = document.createElement("h3");
+  let nameholder = document.createElement("h3"); //cat name
   nameholder.appendChild(document.createTextNode(catnames[i]));
   div.appendChild(nameholder);
 
-  let counter = document.createElement("p");
+  let counter = document.createElement("p"); //counter container
   counter.appendChild(document.createTextNode("Click me! ... Meow! "));
   let span = document.createElement("span");
   span.id = `cat${i}-counter`;
   counter.appendChild(span);
   div.appendChild(counter);
 
-  let image = document.createElement("img");
+  let image = document.createElement("img"); //add the image
   image.id = `cat${i}`;
   image.classList.add("cat-image");
   image.setAttribute("src", `images/${catimages[i]}`);//images/calico1.jpg
@@ -56,7 +57,7 @@ for(let i = 0; i < catnames.length; i++){
   div.appendChild(image);
   container.appendChild(div);
 
-  let cat = new Cat(catnames[i],`cat${i}` );
+  let cat = new Cat(catnames[i],`cat${i}` ); //create the cat objectc and store it in the array
   cats.push(cat);
 }
 
@@ -74,6 +75,8 @@ container.addEventListener('click', function(evt){
 
 }, false);
 
+//tab / button selector
+//Highlight the selected cat name
 tabcontainer.addEventListener('click', function(evt){
 
   let buttons = document.getElementsByTagName("button");
